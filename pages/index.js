@@ -13,9 +13,7 @@ export default function Home() {
 
       <main>
 
-        <div className="h-48 w-48 bg-red-600 flex justify-center items-center">
-          hello nextshop
-        </div>
+      
        
       </main>
 
