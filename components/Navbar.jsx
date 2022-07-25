@@ -1,14 +1,17 @@
 import React from 'react';
+import { FaShoppingCart } from "react-icons/fa";
+import Link from 'next/link'
+
 
 
 const Navbar = () => {
 
     const navlinks = <>
 
-        <li><a>Tshirts</a></li>
-        <li><a>Accessories</a></li>
-        <li><a>Electronics</a></li>
-        <li><a>Games</a></li>
+        <Link href={'/tshirts'} ><li><a>Tshirts</a></li></Link>
+        <Link href={'/tshirts'} ><li><a>Accessories</a></li></Link>
+        <Link href={'/tshirts'} ><li><a>Electronics</a></li></Link>
+        <Link href={'/tshirts'} ><li><a>Games</a></li></Link>
     </>
 
 
@@ -27,7 +30,7 @@ const Navbar = () => {
                             {navlinks}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case font-bold text-xl">nextShop</a>
+                    <Link href={'/'}><a className="btn btn-ghost normal-case font-bold text-xl"> <span className="text-emerald-500">NEXT</span>SHOP </a></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
@@ -35,7 +38,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Cart</a>
+                <FaShoppingCart className='cursor-pointer text-xl ' ></FaShoppingCart>
                 </div>
             </div>
         </div>
