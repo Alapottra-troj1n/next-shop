@@ -3,7 +3,7 @@ import Product from '../components/Product';
 
 const Tshirts = () => {
     return (
-        <div className="my-28 container mx-auto">
+        <div className="pt-32 container mx-auto">
 
             <div className="grid grid-cols-3 gap-10">
                 <Product/>

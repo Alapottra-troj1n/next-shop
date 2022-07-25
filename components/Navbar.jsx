@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaShoppingCart } from "react-icons/fa";
+import { AiFillCloseCircle } from "react-icons/ai";
 import Link from 'next/link'
 
 
@@ -20,8 +21,8 @@ const Navbar = () => {
 
     return (
         <div>
-            <div className="navbar  container mx-auto">
-                <div className="navbar-start bg-base-100 ">
+            <div className="navbar fixed bg-base-100  mx-auto z-10">
+                <div className="navbar-start container ">
                     <div className="dropdown">
                         <label tabIndex="0" className="btn btn-ghost lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
@@ -41,6 +42,22 @@ const Navbar = () => {
                 <FaShoppingCart className='cursor-pointer text-xl ' ></FaShoppingCart>
                 </div>
             </div>
+
+
+
+            <div className=" bg-slate-500 fixed top-0 right-0 z-20 p-10 text-white">
+                    <h2 className="text-xl font-bold text-center">Cart</h2>
+
+                    <ul>
+                        <li> <span>Red Hoodie</span> x<span>5</span> </li>
+                        <li> <span>Red Hoodie</span> x<span>5</span> </li>
+                        <li> <span>Red Hoodie</span> x<span>5</span> </li>
+                    </ul>
+
+                    <AiFillCloseCircle className="fixed top-2 right-2 cursor-pointer" />
+                    
+            </div>
+
         </div>
     );
 };
