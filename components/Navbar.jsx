@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { FaShoppingCart } from "react-icons/fa";
 import { AiFillCloseCircle } from "react-icons/ai";
 import Link from 'next/link'
@@ -15,6 +15,21 @@ const Navbar = () => {
         <Link href={'/tshirts'} ><li><a>Games</a></li></Link>
     </>
 
+
+
+
+        const toggleCart = () => {
+            if(ref.current.classList.contains('translate-x-full')){
+                ref.current.classList.remove('translate-x-full')
+                ref.current.classList.add('translate-x-0')
+            }else if(!ref.current.classList.contains('translate-x-full')){
+                ref.current.classList.add('translate-x-full')
+                ref.current.classList.remove('translate-x-0')
+            }
+
+        }
+
+        const ref = useRef();
 
 
 
@@ -39,13 +54,13 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                <FaShoppingCart className='cursor-pointer text-xl ' ></FaShoppingCart>
+                <FaShoppingCart className='cursor-pointer text-xl ' onClick={()=> toggleCart()} ></FaShoppingCart>
                 </div>
             </div>
 
 
 
-            <div className=" bg-slate-500 fixed top-0 right-0 z-20 p-10 text-white">
+            <div ref={ref} className="sideCart bg-slate-500 fixed top-0 right-0 z-20 p-10 text-white translate-x-full">
                     <h2 className="text-xl font-bold text-center">Cart</h2>
 
                     <ul>
@@ -54,7 +69,7 @@ const Navbar = () => {
                         <li> <span>Red Hoodie</span> x<span>5</span> </li>
                     </ul>
 
-                    <AiFillCloseCircle className="fixed top-2 right-2 cursor-pointer" />
+                    <AiFillCloseCircle onClick={ ()=> toggleCart()} className="fixed top-2 right-2 cursor-pointer" />
                     
             </div>
 
