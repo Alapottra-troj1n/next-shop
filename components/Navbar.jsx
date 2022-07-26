@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { FaShoppingCart } from "react-icons/fa";
-import { AiFillCloseCircle } from "react-icons/ai";
+import { AiFillCloseCircle,AiFillPlusCircle,AiFillMinusCircle } from "react-icons/ai";
 import Link from 'next/link'
 
 
@@ -60,14 +60,23 @@ const Navbar = () => {
 
 
 
-            <div ref={ref} className="sideCart bg-slate-500 fixed top-0 right-0 z-20 p-10 text-white translate-x-full">
-                    <h2 className="text-xl font-bold text-center">Cart</h2>
+            <div ref={ref} className="sideCart h-full w-72 bg-slate-500 fixed top-0 right-0 z-20 p-5 text-white translate-x-full transition">
+                    <h2 className="text-xl font-bold text-center my-5">Your Cart</h2>
 
-                    <ul>
-                        <li> <span>Red Hoodie</span> x<span>5</span> </li>
-                        <li> <span>Red Hoodie</span> x<span>5</span> </li>
-                        <li> <span>Red Hoodie</span> x<span>5</span> </li>
-                    </ul>
+                    <ol className="list-decimal">
+                        <div className='flex justify-center items-center gap-5'>
+                                    <div>
+                                            <h2>Red Nikey Hoddie</h2>
+                                    </div>
+
+                                    <div className='flex justify-center items-center text-md'>
+                                    <AiFillPlusCircle className='cursor-pointer' />   <span className='mx-2' >2</span> <AiFillMinusCircle className='cursor-pointer' />
+                                    </div>
+                        </div>
+
+
+
+                    </ol>
 
                     <AiFillCloseCircle onClick={ ()=> toggleCart()} className="fixed top-2 right-2 cursor-pointer" />
                     
