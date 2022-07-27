@@ -74,9 +74,14 @@ const Navbar = () => {
                                     </div>
                         </div>
 
+                        
 
+                       <div className='flex justify-center items-center mt-20'>
+                       <button className='btn'>Checkout</button>
+                       </div>
 
                     </ol>
+                    
 
                     <AiFillCloseCircle onClick={ ()=> toggleCart()} className="fixed top-2 right-2 cursor-pointer" />
                     
