@@ -6,29 +6,48 @@ const Product = () => {
     const router = useRouter();
     const { slug } = router.query;
     const [pin, setPin] = useState(null);
-    const [pins, setPins] = useState(null);
+    const [pins, setPins] = useState([]);
     const [message, setMessage] = useState('');
+    const [error, setError] = useState('');
 
 
-    const handleCheckPin = async(e) => {
+    const handleCheckPin =  (e) => {
         e.preventDefault();
-        setMessage('')
 
-        setPin(parseInt(e.target.pincode.value));
+        
+        console.log(pin);
 
-        const res = await fetch('http://localhost:3000/api/pincode');
-        const data = await res.json();
-        setPins(data);
 
-        if(pins?.includes(pin)){
-            setMessage('This Area Good')
+        const getPins = async () => {
 
-        }else{
-            setMessage('This Area Bad');
+            const res = await fetch('http://localhost:3000/api/pincode');
+            const data = await res.json();
+            setPins(data);
+
+            if(data.includes(parseInt(pin))){
+                setError('')
+                setMessage('Pincode is available');
+            }else if(!data.includes(parseInt(pin))){
+                setMessage('')
+                setError('Sorry ! Not available')
+            }
+
+
+
         }
 
 
-     
+        getPins();
+      
+  
+
+       
+
+
+       
+
+
+
 
 
 
@@ -120,16 +139,19 @@ const Product = () => {
 
 
                             <form className="mt-20" onSubmit={handleCheckPin}>
-                            <input type="text" placeholder="Pincode" name='pincode' className="input input-bordered w-full max-w-xs mx-2" />
-                            <input type="submit" value="Check Availability" className='btn'/>
-                            <h2 className="font-normal text-2xl" >{message}</h2>
+                                <input type="text" onChange={(e) => setPin(e.target.value)} required placeholder="Pincode" name='pincode' className="input input-bordered w-full max-w-xs mx-2" />
+                                <input type="submit" value="Check Availability" className='btn' />
+                                <div className="mx-2">
+                                    <h2 className="text-green-400 text-xl" >{message}</h2>
+                                    <h2 className="text-red-500 text-xl" >{error}</h2>
+                                </div>
                             </form>
 
 
                         </div>
 
 
-                      
+
 
 
                     </div>
