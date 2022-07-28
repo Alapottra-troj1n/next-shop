@@ -34,7 +34,18 @@ function MyApp({ Component, pageProps }) {
 
 
   const saveCart = (myCart) => {
-    localStorage.setItem('cart', myCart)
+    localStorage.setItem('cart', JSON.stringify(myCart));
+
+    let subT = 0;
+    let keys = Object.keys(myCart);
+
+    for(let i = 0; i < keys.length ; i++){
+      subT += myCart[keys[i]].price * myCart[keys[i]].qty;
+
+    }
+    setSubTotal(subT)
+
+
   }
 
 
@@ -93,8 +104,8 @@ function MyApp({ Component, pageProps }) {
 
 
   return <>
-  <Navbar/>
-  <Component {...pageProps} />
+  <Navbar cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subTotal={subTotal} />
+  <Component  cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subTotal={subTotal} {...pageProps} />
   <Footer/>
   </>
   

@@ -5,7 +5,9 @@ import Link from 'next/link'
 
 
 
-const Navbar = () => {
+const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
+    console.log(cart, addToCart, removeFromCart, clearCart, subTotal);
+
 
     const navlinks = <>
 
@@ -64,20 +66,31 @@ const Navbar = () => {
                     <h2 className="text-xl font-bold text-center my-5">Your Cart</h2>
 
                     <ol className="list-decimal">
-                        <div className='flex justify-center items-center gap-5'>
+                        {Object.keys(cart).length === 0 && <div>
+                            <h2>No items in the cart</h2>
+                        </div>}
+
+                     {Object.keys(cart).map((k) => {
+                       return <div key={k} className='flex justify-center items-center gap-5'>
                                     <div>
-                                            <h2>Red Nikey Hoddie</h2>
+                                            <h2>{cart[k].name}</h2>
                                     </div>
 
                                     <div className='flex justify-center items-center text-md'>
-                                    <AiFillPlusCircle className='cursor-pointer' />   <span className='mx-2' >2</span> <AiFillMinusCircle className='cursor-pointer' />
+                                    <AiFillPlusCircle className='cursor-pointer' />   <span className='mx-2' >{cart[k].qty}</span> <AiFillMinusCircle onClick={(() => removeFromCart( k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant ))} className='cursor-pointer' />
                                     </div>
                         </div>
 
+                     } 
+                     
+                     )}
+
                         
 
-                       <div className='flex justify-center items-center mt-20'>
+                       <div className='flex flex-col gap-5 justify-center items-center mt-20'>
                        <button className='btn'>Checkout</button>
+                      
+                       <button onClick={clearCart} className='btn'>Clear Cart</button>
                        </div>
 
                     </ol>
