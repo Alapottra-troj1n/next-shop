@@ -1,11 +1,12 @@
 import Image from 'next/image';
 import React from 'react';
 
-const Product = () => {
+const Product = ({imgSrc}) => {
+    console.log(imgSrc);
     return (
         <div className="flex justify-center items-center">
             <div className="card w-96 bg-base-100 shadow-xl">
-                <figure><Image height="650" width="500" src="/teeshirt.jpg" alt="Shoes" /></figure>
+                <figure><Image height="650" width="500" src={imgSrc} alt="Shoes" /></figure>
                 <div className="card-body">
                     <h2 className="card-title">
                         Product Name

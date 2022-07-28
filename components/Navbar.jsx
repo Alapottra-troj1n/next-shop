@@ -12,7 +12,7 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
     const navlinks = <>
 
         <Link href={'/tshirts'} ><li><a>Tshirts</a></li></Link>
-        <Link href={'/tshirts'} ><li><a>Accessories</a></li></Link>
+        <Link href={'/accessories'} ><li><a>Accessories</a></li></Link>
         <Link href={'/tshirts'} ><li><a>Electronics</a></li></Link>
         <Link href={'/tshirts'} ><li><a>Games</a></li></Link>
     </>
