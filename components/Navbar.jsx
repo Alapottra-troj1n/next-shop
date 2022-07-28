@@ -77,7 +77,11 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
                                     </div>
 
                                     <div className='flex justify-center items-center text-md'>
-                                    <AiFillPlusCircle className='cursor-pointer' />   <span className='mx-2' >{cart[k].qty}</span> <AiFillMinusCircle onClick={(() => removeFromCart( k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant ))} className='cursor-pointer' />
+                                    <AiFillPlusCircle onClick={(() => addToCart( k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant ))} className='cursor-pointer' />   
+                                    
+                                    <span className='mx-2' >{cart[k].qty}</span> 
+                                    
+                                    <AiFillMinusCircle onClick={(() => removeFromCart( k, 1, cart[k].price, cart[k].name, cart[k].size, cart[k].variant ))} className='cursor-pointer' />
                                     </div>
                         </div>
 
