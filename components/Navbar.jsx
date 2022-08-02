@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { FaShoppingCart } from "react-icons/fa";
+import { MdAccountCircle } from "react-icons/md";
 import { AiFillCloseCircle,AiFillPlusCircle,AiFillMinusCircle } from "react-icons/ai";
 import Link from 'next/link'
 
@@ -56,7 +57,9 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
                     </ul>
                 </div>
                 <div className="navbar-end">
+              <Link href={'/login'} ><MdAccountCircle className='cursor-pointer text-2xl mx-3 '  /></Link>
                 <FaShoppingCart className='cursor-pointer text-xl ' onClick={()=> toggleCart()} ></FaShoppingCart>
+              
                 </div>
             </div>
 
@@ -86,8 +89,10 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
                         </div>
 
                      } 
+                   
                      
                      )}
+                       <h2>Subtotal : {subTotal} USD</h2>
 
                         
 
@@ -101,6 +106,7 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
                     
 
                     <AiFillCloseCircle onClick={ ()=> toggleCart()} className="fixed top-2 right-2 cursor-pointer" />
+                   
                     
             </div>
 
