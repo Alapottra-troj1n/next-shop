@@ -26,7 +26,7 @@ export async function getServerSideProps(context) {
 
         await connectDb();
 
-        let products = await Products.find();
+        let products = await Products.find({category: 'tshirt'});
 
         
 

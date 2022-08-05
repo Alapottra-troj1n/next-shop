@@ -1,7 +1,10 @@
 import Product from "../../models/products";
 import connectDb from "../../middleware/mongoose";
 
-const handler = async (req, res) => {
+
+export default async function handler (req,res){
+
+    await connectDb();
 
     if(req.method == 'POST'){
         let p = new Product({
@@ -22,6 +25,5 @@ const handler = async (req, res) => {
         res.status(400).send({message: 'invaild request'});
     }
 
-};
+}
 
-export default connectDb(handler);

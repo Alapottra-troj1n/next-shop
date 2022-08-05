@@ -2,8 +2,9 @@ import Products from "../../models/products";
 import connectDb from "../../middleware/mongoose";
 
 
-const handler = async(req,res) => {
+export default async function handler (req,res){
 
+    await connectDb();
     let products = await Products.find();
 
 
@@ -13,5 +14,7 @@ const handler = async(req,res) => {
 
 
 
-export default connectDb(handler);
+
+
+
   
