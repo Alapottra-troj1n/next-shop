@@ -1,8 +1,11 @@
+import mongoose from 'mongoose';
 import React from 'react';
 import Product from '../components/Product';
+import connectDb from '../middleware/mongoose';
+import Products from "../models/Products";
 
 const Tshirts = ({data}) => {
-    console.log(data);
+ 
     return (
         <div className="pt-32 container mx-auto">
 
@@ -19,11 +22,20 @@ const Tshirts = ({data}) => {
 
 export async function getServerSideProps(context) {
 
-        const res = await fetch('http://localhost:3000/api/getproducts');
-        const data = await res.json();
+        
+
+        await connectDb();
+
+        let products = await Products.find();
+
+        
+
+
+
+
 
     return {
-      props: {data: data}, 
+      props: { data : JSON.parse(JSON.stringify(products))} 
     }
   }
 
