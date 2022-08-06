@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/router'
 import Link from 'next/link';
+import connectDb from '../../middleware/mongoose';
+import Products from "../../models/Products";
 
-const Product = ({addToCart}) => {
+const Product = ({addToCart, product}) => {
 
     const router = useRouter();
     const { slug } = router.query;
@@ -65,7 +67,7 @@ const Product = ({addToCart}) => {
                         <img alt="ecommerce" className="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-top rounded flex flex-col justify-center" src="/teeshirt.jpg" />
                         <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                             <h2 className="text-sm title-font text-gray-500 tracking-widest">BRAND NAME</h2>
-                            <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">The Catcher in the Rye</h1>
+                            <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{product.title}</h1>
                             <div className="flex mb-4">
                                 <span className="flex items-center justify-center">
                                     <svg fill="currentColor" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" className="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
@@ -170,5 +172,18 @@ const Product = ({addToCart}) => {
 
     );
 };
+
+
+export async function getServerSideProps(context) {
+
+    await connectDb();
+
+    let product = await Products.findOne({slug: context.query.slug})
+
+
+    return {
+      props: {product : JSON.parse(JSON.stringify(product))} // will be passed to the page component as props
+    }
+  }
 
 export default Product;
