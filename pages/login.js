@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React from 'react';
 import { useRouter } from 'next/router';
 
-const Login = () => {
+const Login = ({setKey}) => {
 
 
 
@@ -32,7 +32,8 @@ const Login = () => {
         if(data.success){
             alert('sucessfully logged in');
             localStorage.setItem('token',data.token);
-            router.push('/')
+            router.push('/');
+          
 
         }else{
             alert(data.message);

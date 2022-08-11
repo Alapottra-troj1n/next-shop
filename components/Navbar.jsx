@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { FaShoppingCart } from "react-icons/fa";
 import { MdAccountCircle } from "react-icons/md";
 import { AiFillCloseCircle,AiFillPlusCircle,AiFillMinusCircle } from "react-icons/ai";
@@ -6,7 +6,7 @@ import Link from 'next/link'
 
 
 
-const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
+const Navbar = ({user,logout, setKey,key,cart, addToCart, removeFromCart, clearCart, subTotal}) => {
     console.log(cart, addToCart, removeFromCart, clearCart, subTotal);
 
 
@@ -16,7 +16,10 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
         <Link href={'/accessories'} ><li><a>Accessories</a></li></Link>
         <Link href={'/tshirts'} ><li><a>Electronics</a></li></Link>
         <Link href={'/tshirts'} ><li><a>Games</a></li></Link>
+
     </>
+
+    const [dropdown, setDropdown] = useState(false)
 
 
 
@@ -57,7 +60,34 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-              <Link href={'/login'} ><MdAccountCircle className='cursor-pointer text-2xl mx-3 '  /></Link>
+
+                <a >
+
+
+
+                </a>
+
+              {user.value ? <a onMouseEnter={()=> setDropdown(true)} onMouseLeave={()=> setDropdown(false)}><MdAccountCircle className='cursor-pointer text-2xl mx-3 '  /></a>  :
+              
+              <Link href={'/login'}><button className="btn btn-primary">Log in</button></Link>
+              
+              
+              }
+
+          {dropdown &&       <div onMouseEnter={()=> setDropdown(true)} onMouseLeave={()=> setDropdown(false)} className="absolute top-10 right-12 bg-gray-600 text-white p-10 rounded-xl">
+                    <ul className="flex flex-col gap-3">
+
+                            <li className="cursor-pointer"><Link href={'/account'}>My Account</Link></li>
+                            <li>Orders</li>
+                            <li className="cursor-pointer" onClick={()=> logout()}>Log Out</li>
+
+                    </ul>
+
+
+                </div>}
+
+
+              
                 <FaShoppingCart className='cursor-pointer text-xl ' onClick={()=> toggleCart()} ></FaShoppingCart>
               
                 </div>
