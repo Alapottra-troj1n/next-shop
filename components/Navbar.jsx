@@ -92,7 +92,7 @@ const Navbar = ({cart, addToCart, removeFromCart, clearCart, subTotal}) => {
                    
                      
                      )}
-                       <h2>Subtotal : {subTotal} USD</h2>
+                       <h2 className='mt-16'>Subtotal : {subTotal} USD</h2>
 
                         
 
