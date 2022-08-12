@@ -3,7 +3,12 @@ import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import '../styles/globals.css'
 import { useRouter } from 'next/router';
+import LoadingBar from 'react-top-loading-bar'
+
+
 function MyApp({ Component, pageProps }) {
+
+  const [progress, setProgress] = useState(0)
 
 
   const [cart, setCart] = useState({})
@@ -18,6 +23,8 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     try {
 
+      router.events.on('routeChangeStart', () => setProgress(40))
+      router.events.on('routeChangeComplete', () => setProgress(100))
 
       if(localStorage.getItem('cart')){
 
@@ -131,6 +138,13 @@ function MyApp({ Component, pageProps }) {
 
 
   return <>
+     <LoadingBar
+        color='#f11946'
+        progress={progress}
+        waitingTime={400}
+        onLoaderFinished={() => setProgress(0)}
+      />
+
   <Navbar logout={logout} user={user} setKey={setKey} key={key} cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subTotal={subTotal} />
   <Component setKey={setKey}   cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} clearCart={clearCart} subTotal={subTotal} {...pageProps} />
   <Footer/>
