@@ -77,7 +77,7 @@ const Navbar = ({user,logout, setKey,key,cart, addToCart, removeFromCart, clearC
           {dropdown &&       <div onMouseEnter={()=> setDropdown(true)} onMouseLeave={()=> setDropdown(false)} className="absolute top-10 right-12 bg-gray-600 text-white p-10 rounded-xl">
                     <ul className="flex flex-col gap-3">
 
-                            <li className="cursor-pointer"><Link href={'/account'}>My Account</Link></li>
+                            <li className="cursor-pointer"><Link href={'/myaccount'}>My Account</Link></li>
                             <li>Orders</li>
                             <li className="cursor-pointer" onClick={()=> logout()}>Log Out</li>
 
